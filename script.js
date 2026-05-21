@@ -68,7 +68,7 @@ let radios=document.querySelectorAll(`input[name="question-${i}"]`);
 radios.forEach((radio)=>{
 	radio.addEventListener("change",(event)=>{
 	 if (event.target.checked) {
-		 userAnswers[i]=event.target.checked;
+		 userAnswers[i]=event.target.value;
 	 }})
 })
 sessionStorage.setItem("progress",JSON.stringify(userAnswers));
