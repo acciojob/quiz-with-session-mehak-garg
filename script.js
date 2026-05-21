@@ -4,7 +4,7 @@
 // This code will just display the questions to the screen
 	let questionsElement=document.querySelector("#questions");
 let score=document.querySelector("#score");
-	let userAnswers=new Array(5);
+	let userAnswers=sessionStorage.getItem("progress")?JSON.parse(sessionStorage.getItem("progress")):[];
 const questions = [
   {
     question: "What is the capital of France?",
@@ -50,7 +50,7 @@ function renderQuestions() {
 
 		if (userAnswers[i] === choice) {
         choiceElement.setAttribute("checked", true);
-		sessionStorage.setItem("progress",JSON.stringify(userAnswers));
+
       }
       const choiceText = document.createTextNode(choice);
       questionElement.appendChild(choiceElement);
@@ -69,6 +69,7 @@ if(selected)
 			userAnswers[i]=selected.value;
 		}
 renderQuestions();
+		sessionStorage.setItem("progress",JSON.stringify(userAnswers));
 	let score_value=0;
 	for(let i=0;i<5;i++)
 		{
@@ -78,6 +79,7 @@ renderQuestions();
 			}
 		}
 	score.innerHTML=`Your score is ${score_value} out of 5.`;
+localStorage.setItem("score",`${score_value}`);
 })
 
 
