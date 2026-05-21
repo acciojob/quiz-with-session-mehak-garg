@@ -2,6 +2,9 @@
 
 // Do not change code below this line
 // This code will just display the questions to the screen
+	let questionsElement=document.querySelector("#questions");
+let score=document.querySelector("#score");
+	let userAnswers=new Array(5);
 const questions = [
   {
     question: "What is the capital of France?",
@@ -32,6 +35,7 @@ const questions = [
 
 // Display the quiz questions and choices
 function renderQuestions() {
+	questionsElement.innerHTML="";
   for (let i = 0; i < questions.length; i++) {
     const question = questions[i];
     const questionElement = document.createElement("div");
@@ -43,8 +47,10 @@ function renderQuestions() {
       choiceElement.setAttribute("type", "radio");
       choiceElement.setAttribute("name", `question-${i}`);
       choiceElement.setAttribute("value", choice);
-      if (userAnswers[i] === choice) {
+
+		if (userAnswers[i] === choice) {
         choiceElement.setAttribute("checked", true);
+		sessionStorage.setItem("progress",JSON.stringify(userAnswers));
       }
       const choiceText = document.createTextNode(choice);
       questionElement.appendChild(choiceElement);
@@ -54,3 +60,31 @@ function renderQuestions() {
   }
 }
 renderQuestions();
+let btn=document.querySelector("#submit");
+btn.addEventListener("click",()=>{
+	for(let i=0;i<questions.length;i++)
+		{
+const selected = document.querySelector(`input[name="question-${i}"]:checked`);
+if(selected)
+			userAnswers[i]=selected.value;
+		}
+renderQuestions();
+	let score_value=0;
+	for(let i=0;i<5;i++)
+		{
+			if(userAnswers[i]===questions[i].answer)
+			{
+				score_value++;
+			}
+		}
+	score.innerHTML=`Your score is ${score_value} out of 5.`;
+})
+
+
+
+
+
+
+
+
+
