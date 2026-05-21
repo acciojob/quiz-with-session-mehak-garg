@@ -52,12 +52,21 @@ function renderQuestions() {
         choiceElement.setAttribute("checked", true);
 
       }
+		
       const choiceText = document.createTextNode(choice);
       questionElement.appendChild(choiceElement);
       questionElement.appendChild(choiceText);
     }
     questionsElement.appendChild(questionElement);
   }
+	const selected = document.querySelector(`input[name="question-${i}"]:checked`);
+if(selected){
+			userAnswers[i]=selected.value;
+}
+		if(userAnswers[i]===questions[i].answer)
+		{
+sessionStorage.setItem("progress",JSON.stringify(userAnswers));			
+		}
 }
 renderQuestions();
 let btn=document.querySelector("#submit");
