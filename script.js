@@ -69,9 +69,10 @@ radios.forEach((radio)=>{
 	radio.addEventListener("change",(event)=>{
 	 if (event.target.checked) {
 		 userAnswers[i]=event.target.value;
+		 sessionStorage.setItem("progress",JSON.stringify(userAnswers));
 	 }})
 })
-sessionStorage.setItem("progress",JSON.stringify(userAnswers));
+
 	}
 		let btn=document.querySelector("#submit");
 btn.addEventListener("click",()=>{
