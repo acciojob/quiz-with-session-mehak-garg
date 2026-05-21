@@ -61,9 +61,19 @@ function renderQuestions() {
   }
 	
 }
-
 renderQuestions();
-let btn=document.querySelector("#submit");
+for(let i=0;i<5;i++)
+	{
+let radios=document.querySelectorAll(`input[name="question-${i}"]`);
+radios.forEach((radio)=>{
+	radio.addEventListener("change",(event)=>{
+	 if (event.target.checked) {
+		 userAnswers[i]=event.target.checked;
+	 }})
+})
+sessionStorage.setItem("progress",JSON.stringify(userAnswers));
+	}
+		let btn=document.querySelector("#submit");
 btn.addEventListener("click",()=>{
 	for(let i=0;i<questions.length;i++)
 		{
