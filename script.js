@@ -59,15 +59,9 @@ function renderQuestions() {
     }
     questionsElement.appendChild(questionElement);
   }
-	const selected = document.querySelector(`input[name="question-${i}"]:checked`);
-if(selected){
-			userAnswers[i]=selected.value;
+	
 }
-		if(userAnswers[i]===questions[i].answer)
-		{
-sessionStorage.setItem("progress",JSON.stringify(userAnswers));			
-		}
-}
+
 renderQuestions();
 let btn=document.querySelector("#submit");
 btn.addEventListener("click",()=>{
